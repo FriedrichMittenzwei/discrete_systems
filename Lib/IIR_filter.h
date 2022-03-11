@@ -15,8 +15,8 @@ operator: (float)   // calls "eval"
 class IIR_filter
 {
 public:
-    IIR_filter(float,float);
-    IIR_filter(float,float,float);
+    IIR_filter(float,float);                //Construktor PT1
+    IIR_filter(float,float,float,float);    //Construktor PT2
     virtual ~IIR_filter();
     float eval(float);
     float operator()(float u){
@@ -26,4 +26,6 @@ private:
     float *B;
     float *A;
     uint8_t nb,na;
+    float a0, a1, a2, b0;
+    float y, Y_k1, Y_k2, U_k1, U_k2; 
 };

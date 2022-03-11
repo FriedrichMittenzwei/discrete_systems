@@ -4,6 +4,7 @@
  */
 
 #include "mbed.h"
+#include <cstdint>
 #include <stdint.h>
 
 #include "IIR_filter.h"
@@ -21,7 +22,18 @@ int main()
         /* stop bit */ 1);
     serial_port.set_blocking(false);
     printf("Start loop\n");
-    
+
+    const uint16_t N = 100;
+    float u[N]; 
+    float y[N];
+    IIR_filter LP(2.0,15.0,0.3,0.01);                //Initiation Filter
+    for(uint16_t k = 0; k<N;k++)
+    u[k] = 1;
+    for(uint16_t k = 0; k<N;k++)
+    y[k] = LP(u[k]);                        //Filter
+    for(uint16_t k = 0; k<N;k++)
+    printf("%2.3f %2.3f\r\n",u[k],y[k]);
+
     while(1) 
     ;    
     
