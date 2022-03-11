@@ -3,6 +3,9 @@
 #include "mbed.h"
 #include "Signal.h"
 #include "ThreadFlag.h"
+#include "EncoderCounter.h"
+#include "IIR_filter.h"
+#include "LinearCharacteristics.h"
 
 class rt_loop
 {
@@ -19,4 +22,7 @@ private:
     void sendSignal();
     Timer ti;
     float Ts;
+    IIR_filter dif1;
+    IIR_filter dif2;
+    LinearCharacteristics i2u;
 };
